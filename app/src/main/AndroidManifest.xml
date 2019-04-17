@@ -16,7 +16,7 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.google.ar.sceneform.samples.augmentedimage">
+    package="edu.ncf.ar.araquarium">
 
   <uses-permission android:name="android.permission.CAMERA"/>
   <!-- This tag indicates that this application requires ARCore.  This results in the application
@@ -32,7 +32,7 @@
       tools:ignore="GoogleAppIndexingWarning">
 
     <activity
-        android:name=".AugmentedImageActivity"
+        android:name="edu.ncf.ar.araquarium.AugmentedImageActivity"
         android:configChanges="orientation|screenSize"
         android:exported="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"

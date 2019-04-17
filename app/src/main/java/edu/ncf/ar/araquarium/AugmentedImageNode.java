@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.ar.sceneform.samples.augmentedimage;
+package edu.ncf.ar.araquarium;
 
 import android.content.Context;
 import android.net.Uri;
