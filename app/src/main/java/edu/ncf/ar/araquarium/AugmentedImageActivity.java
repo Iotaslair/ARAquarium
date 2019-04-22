@@ -16,9 +16,13 @@
 
 package edu.ncf.ar.araquarium;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.core.Frame;
@@ -38,8 +42,11 @@ import java.util.Map;
  */
 public class AugmentedImageActivity extends AppCompatActivity {
 
+  private FrameLayout frameLayout;
   private ArFragment arFragment;
   private ImageView fitToScanView;
+  private Resources mRes;
+  private String currentFragment;
 
   // Augmented image and its associated center pose anchor, keyed by the augmented image in
   // the database.
@@ -49,19 +56,34 @@ public class AugmentedImageActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
-    arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
+    mRes = getResources();
+    frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+//    arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
     fitToScanView = findViewById(R.id.image_view_fit_to_scan);
-
-    arFragment.getArSceneView().getScene().addOnUpdateListener(this::onUpdateFrame);
+    fitToScanView.setVisibility(View.INVISIBLE);
+//
+//    arFragment.getArSceneView().getScene().addOnUpdateListener(this::onUpdateFrame);
+    startQuiz(R.array.dummy_quiz);
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    if (augmentedImageMap.isEmpty()) {
-      fitToScanView.setVisibility(View.VISIBLE);
-    }
+//    if (augmentedImageMap.isEmpty()) {
+//      fitToScanView.setVisibility(View.VISIBLE);
+//    }
+  }
+
+  private void startQuiz(int questionId){
+    Log.d("activityMain", "Starting Quiz");
+    currentFragment = mRes.getString(R.string.QUIZ);
+    QuizFragment qf = new QuizFragment();
+    Bundle quizArgs = new Bundle();
+    quizArgs.putInt(mRes.getString(R.string.qid), questionId);
+    qf.setArguments(quizArgs);
+    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+    fragmentTransaction.add(R.id.frameLayout, qf, mRes.getString(R.string.QUIZ));
+    fragmentTransaction.commit();
   }
 
   /**
@@ -69,42 +91,42 @@ public class AugmentedImageActivity extends AppCompatActivity {
    *
    * @param frameTime - time since last frame.
    */
-  private void onUpdateFrame(FrameTime frameTime) {
-    Frame frame = arFragment.getArSceneView().getArFrame();
-
-    // If there is no frame or ARCore is not tracking yet, just return.
-    if (frame == null || frame.getCamera().getTrackingState() != TrackingState.TRACKING) {
-      return;
-    }
-
-    Collection<AugmentedImage> updatedAugmentedImages =
-        frame.getUpdatedTrackables(AugmentedImage.class);
-    for (AugmentedImage augmentedImage : updatedAugmentedImages) {
-      switch (augmentedImage.getTrackingState()) {
-        case PAUSED:
-          // When an image is in PAUSED state, but the camera is not PAUSED, it has been detected,
-          // but not yet tracked.
-          String text = "Detected Image " + augmentedImage.getIndex();
-          SnackbarHelper.getInstance().showMessage(this, text);
-          break;
-
-        case TRACKING:
-          // Have to switch to UI Thread to update View.
-          fitToScanView.setVisibility(View.GONE);
-
-          // Create a new anchor for newly found images.
-          if (!augmentedImageMap.containsKey(augmentedImage)) {
-            AugmentedImageNode node = new AugmentedImageNode(this);
-            node.setImage(augmentedImage);
-            augmentedImageMap.put(augmentedImage, node);
-            arFragment.getArSceneView().getScene().addChild(node);
-          }
-          break;
-
-        case STOPPED:
-          augmentedImageMap.remove(augmentedImage);
-          break;
-      }
-    }
-  }
+//  private void onUpdateFrame(FrameTime frameTime) {
+//    Frame frame = arFragment.getArSceneView().getArFrame();
+//
+//    // If there is no frame or ARCore is not tracking yet, just return.
+//    if (frame == null || frame.getCamera().getTrackingState() != TrackingState.TRACKING) {
+//      return;
+//    }
+//
+//    Collection<AugmentedImage> updatedAugmentedImages =
+//        frame.getUpdatedTrackables(AugmentedImage.class);
+//    for (AugmentedImage augmentedImage : updatedAugmentedImages) {
+//      switch (augmentedImage.getTrackingState()) {
+//        case PAUSED:
+//          // When an image is in PAUSED state, but the camera is not PAUSED, it has been detected,
+//          // but not yet tracked.
+//          String text = "Detected Image " + augmentedImage.getIndex();
+//          SnackbarHelper.getInstance().showMessage(this, text);
+//          break;
+//
+//        case TRACKING:
+//          // Have to switch to UI Thread to update View.
+//          fitToScanView.setVisibility(View.GONE);
+//
+//          // Create a new anchor for newly found images.
+//          if (!augmentedImageMap.containsKey(augmentedImage)) {
+//            AugmentedImageNode node = new AugmentedImageNode(this);
+//            node.setImage(augmentedImage);
+//            augmentedImageMap.put(augmentedImage, node);
+//            arFragment.getArSceneView().getScene().addChild(node);
+//          }
+//          break;
+//
+//        case STOPPED:
+//          augmentedImageMap.remove(augmentedImage);
+//          break;
+//      }
+//    }
+//  }
 }

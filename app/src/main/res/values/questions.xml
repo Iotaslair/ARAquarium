@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dummy_quiz">
+        <item name="question">What kind of fish is Dory?</item>
+        <item>Clown Fish</item>
+        <item>Blue Tang</item>
+        <item>Swordfish</item>
+        <item>Dolphin</item>
+        <item name="correct_answ">1</item>
+        <item>dory</item>
+        <item>dory</item>
+        <item>dory</item>
+        <item>dory</item>
+    </string-array>
+
+</resources>

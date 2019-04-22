@@ -20,13 +20,16 @@
     <TextView
         android:id="@+id/quizQuestionText"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_question"
         android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/quizRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -36,11 +39,11 @@
     <RadioGroup
         android:id="@+id/quizRadioGroup"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/quizExitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bg_question"
-            android:drawableLeft="@drawable/dory"
             android:gravity="center"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -63,9 +66,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bg_question"
-            android:drawableLeft="@drawable/dory"
             android:gravity="center"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/radioButton3"
@@ -73,9 +76,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bg_question"
-            android:drawableLeft="@drawable/dory"
             android:gravity="center"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/radioButton4"
@@ -83,9 +86,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bg_question"
-            android:drawableLeft="@drawable/dory"
             android:gravity="center"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="24sp" />
     </RadioGroup>
 
     <Button
@@ -93,8 +96,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/bg_question"
         android:paddingHorizontal="15px"
         android:text="@string/submit"
@@ -111,7 +114,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/bg_question"
         android:paddingHorizontal="15px"
         android:text="@string/quit"
