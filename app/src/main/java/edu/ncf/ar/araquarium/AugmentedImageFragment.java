@@ -82,14 +82,15 @@ public class AugmentedImageFragment extends ArFragment {
   }
 
   @Override
-  public View onCreateView(
-      LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = super.onCreateView(inflater, container, savedInstanceState);
 
     // Turn off the plane discovery since we're only looking for images
     getPlaneDiscoveryController().hide();
     getPlaneDiscoveryController().setInstructionView(null);
     getArSceneView().getPlaneRenderer().setEnabled(false);
+    MainActivity ma = (MainActivity) getActivity();
+    getArSceneView().getScene().addOnUpdateListener(ma::onUpdateFrame);
     return view;
   }
 

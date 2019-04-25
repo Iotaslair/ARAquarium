@@ -84,7 +84,8 @@ public class QuizFragment extends Fragment {
     }
 
     private void quitPressed(){
-        //stubbed, return to home fragment
+        MainActivity ma = (MainActivity) getActivity();
+        ma.startAugmentedImage();
     }
 
     private void submitPressed(){
@@ -105,8 +106,8 @@ public class QuizFragment extends Fragment {
         //stubbed, goto result screen fragment with result
         if(correct){
             Log.d("ME TESTING", "Trying to launch Augmented Image Activity");
-            Intent intent = new Intent(getContext(), AugmentedImageFragment.class);
-            startActivity(intent);
+            MainActivity ma = (MainActivity) getActivity();
+            ma.startAugmentedImage();
         }
 
 
