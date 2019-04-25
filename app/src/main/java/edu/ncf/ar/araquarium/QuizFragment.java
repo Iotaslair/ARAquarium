@@ -1,11 +1,13 @@
 package edu.ncf.ar.araquarium;
 
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +101,15 @@ public class QuizFragment extends Fragment {
     }
 
     public void submitResult(Boolean correct){
+        Log.d("ME TESTING", "Called submitResult");
         //stubbed, goto result screen fragment with result
+        if(correct){
+            Log.d("ME TESTING", "Trying to launch Augmented Image Activity");
+            Intent intent = new Intent(getContext(), AugmentedImageFragment.class);
+            startActivity(intent);
+        }
+
+
     }
 
 }
