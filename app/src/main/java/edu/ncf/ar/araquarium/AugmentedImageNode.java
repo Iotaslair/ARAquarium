@@ -22,6 +22,7 @@ import android.util.Log;
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.Node;
+import com.google.ar.sceneform.math.Quaternion;
 import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import java.util.concurrent.CompletableFuture;
@@ -51,7 +52,7 @@ public class AugmentedImageNode extends AnchorNode {
     if (ulCorner == null) {
       ulCorner =
           ModelRenderable.builder()
-              .setSource(context, Uri.parse("models/frame_upper_left.sfb"))
+              .setSource(context, Uri.parse("Crab.sfb"))
               .build();
       urCorner =
           ModelRenderable.builder()
@@ -101,6 +102,7 @@ public class AugmentedImageNode extends AnchorNode {
     cornerNode = new Node();
     cornerNode.setParent(this);
     cornerNode.setLocalPosition(localPosition);
+    cornerNode.setLocalRotation(Quaternion.eulerAngles(new Vector3(0,0,0)));
     cornerNode.setRenderable(ulCorner.getNow(null));
 
     // Upper right corner.
