@@ -92,3 +92,8 @@ sceneform.asset('sampledata/Dory/Dory.obj',
         'default',
         'sampledata/Dory/Dory.sfa',
         'src/main/assets/Dory')
+
+sceneform.asset('sampledata/Nemo/Nemo.obj',
+        'default',
+        'sampledata/Nemo/Nemo.sfa',
+        'src/main/assets/Nemo')
