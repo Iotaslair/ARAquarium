@@ -52,7 +52,7 @@ public class AugmentedImageNode extends AnchorNode {
     if (ulCorner == null) {
       ulCorner =
           ModelRenderable.builder()
-              .setSource(context, Uri.parse("Crab.sfb"))
+              .setSource(context, Uri.parse("Dolphin.sfb"))
               .build();
       urCorner =
           ModelRenderable.builder()
@@ -102,7 +102,7 @@ public class AugmentedImageNode extends AnchorNode {
     cornerNode = new Node();
     cornerNode.setParent(this);
     cornerNode.setLocalPosition(localPosition);
-    cornerNode.setLocalRotation(Quaternion.eulerAngles(new Vector3(0,0,0)));
+    cornerNode.setLocalRotation(Quaternion.eulerAngles(new Vector3(90,180,0)));
     cornerNode.setRenderable(ulCorner.getNow(null));
 
     // Upper right corner.
