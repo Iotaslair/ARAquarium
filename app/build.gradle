@@ -92,3 +92,8 @@ sceneform.asset('sampledata/Nemo/Nemo.obj',
         'default',
         'sampledata/Nemo/Nemo.sfa',
         'src/main/assets/Nemo')
+
+sceneform.asset('sampledata/Dolphin/Dolphin.obj',
+        'default',
+        'sampledata/Dolphin/Dolphin.sfa',
+        'src/main/assets/Dolphin')
