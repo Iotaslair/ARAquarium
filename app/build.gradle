@@ -83,11 +83,6 @@ sceneform.asset('sampledata/Crab/Crab.obj',
         'sampledata/Crab/Crab.sfa',
         'src/main/assets/Crab')
 
-sceneform.asset('sampledata/Dolphin/Dolphin.obj',
-        'default',
-        'sampledata/Dolphin/Dolphin.sfa',
-        'src/main/assets/Dolphin')
-
 sceneform.asset('sampledata/Dory/Dory.obj',
         'default',
         'sampledata/Dory/Dory.sfa',
