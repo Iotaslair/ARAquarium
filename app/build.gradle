@@ -92,3 +92,8 @@ sceneform.asset('sampledata/Dory/TropicalFish02.obj',
         'default',
         'sampledata/Dory/TropicalFish02.sfa',
         'src/main/assets/TropicalFish02')
+
+sceneform.asset('sampledata/Nemo/TropicalFish12.obj',
+        'default',
+        'sampledata/Nemo/TropicalFish12.sfa',
+        'src/main/assets/TropicalFish12')
