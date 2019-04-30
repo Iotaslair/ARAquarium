@@ -25,7 +25,7 @@ public class QuizFragment extends Fragment {
     private RadioGroup radioGroup;
     private RadioButton radioBtn1, radioBtn2,radioBtn3, radioBtn4;
     private TextView questionText;
-    private int correctAnswerId;
+    private int correctAnswerId, questionId;
 
     @Override
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class QuizFragment extends Fragment {
         radioBtn4 = rootView.findViewById(R.id.radioButton4);
         if(getArguments()!=null){
 
-            int questionId = getArguments().getInt(mRes.getString(R.string.qid));
+            questionId = getArguments().getInt(mRes.getString(R.string.qid));
             String[] question = mRes.getStringArray(questionId);
             //set question text
             questionText.setText(question[0]);
@@ -102,15 +102,8 @@ public class QuizFragment extends Fragment {
     }
 
     public void submitResult(Boolean correct){
-        Log.d("ME TESTING", "Called submitResult");
-        //stubbed, goto result screen fragment with result
-        if(correct){
-            Log.d("ME TESTING", "Trying to launch Augmented Image Activity");
-            MainActivity ma = (MainActivity) getActivity();
-            ma.startAugmentedImage();
-        }
-
-
+        MainActivity ma = (MainActivity) getActivity();
+        ma.startResult(correct, questionId);
     }
 
 }

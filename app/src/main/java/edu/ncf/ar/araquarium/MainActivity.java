@@ -81,6 +81,22 @@ public class MainActivity extends AppCompatActivity {
     fragmentTransaction.commit();
   }
 
+  public void startResult(Boolean correct, int questionId){
+    Log.d("activityMain", "Starting Result");
+    currentFragment = mRes.getString(R.string.QUIZ);
+    arFragment = null;
+    ResultFragment rf = new ResultFragment();
+    Bundle resultArgs = new Bundle();
+    resultArgs.putInt(mRes.getString(R.string.qid), questionId);
+    resultArgs.putBoolean(mRes.getString(R.string.bid), correct);
+    rf.setArguments(resultArgs);
+    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+    fragmentTransaction.replace(R.id.frameLayout, rf, mRes.getString(R.string.QUIZ));
+    fragmentTransaction.commit();
+  }
+
+  public void startAugmentedAquarium(){}
+
   public void startAugmentedImage(){
     Log.d("activityMain", "Starting Augmented Image");
     currentFragment = mRes.getString(R.string.AUGIMAGE);
