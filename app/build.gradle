@@ -88,12 +88,7 @@ sceneform.asset('sampledata/Dolphin/Dolphin.obj',
         'sampledata/Dolphin/Dolphin.sfa',
         'src/main/assets/Dolphin')
 
-sceneform.asset('sampledata/Dory/Dory.obj',
+sceneform.asset('sampledata/Dory/TropicalFish02.obj',
         'default',
-        'sampledata/Dory/Dory.sfa',
-        'src/main/assets/Dory')
-
-sceneform.asset('sampledata/Nemo/Nemo.obj',
-        'default',
-        'sampledata/Nemo/Nemo.sfa',
-        'src/main/assets/Nemo')
+        'sampledata/Dory/TropicalFish02.sfa',
+        'src/main/assets/TropicalFish02')

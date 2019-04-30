@@ -1,10 +1,10 @@
 {
   materials: [
     {
-      name: '12___Default',
+      name: '02___Default',
       parameters: [
         {
-          baseColor: null,
+          baseColor: 'TropicalFish02',
         },
         {
           baseColorTint: [
@@ -15,10 +15,10 @@
           ],
         },
         {
-          metallic: 1,
+          metallic: 0,
         },
         {
-          roughness: 0.41162500000000002,
+          roughness: 1,
         },
         {
           opacity: null,
@@ -34,10 +34,20 @@
       'Orientation',
     ],
     collision: {},
-    file: 'sampledata/Nemo/Nemo.obj',
-    name: 'Nemo',
+    file: 'sampledata/Dory/TropicalFish02.obj',
+    name: 'TropicalFish02',
     recenter: 'root',
-    scale: 0.03,
+    scale: 0.0060749999999999997,
   },
+  samplers: [
+    {
+      file: 'sampledata/Dory\\TropicalFish02.jpg',
+      name: 'TropicalFish02',
+      params: {
+        usage_type: 'Data',
+      },
+      pipeline_name: 'J:\\my projects\\tropicalfish\\TropicalFish02.jpg',
+    },
+  ],
   version: '0.54:2',
 }
