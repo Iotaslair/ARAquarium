@@ -18,6 +18,6 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.ncf.ar.araquarium.MainActivity">
+    tools:context="edu.ncf.ar.araquarium.AugmentedImageActivity">
 
 </FrameLayout>

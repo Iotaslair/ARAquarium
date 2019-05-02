@@ -1,13 +1,9 @@
 package edu.ncf.ar.araquarium;
 
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +12,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import edu.ncf.ar.araquarium.common.helpers.QuizActivity;
 
 public class QuizFragment extends Fragment {
 
@@ -84,7 +82,7 @@ public class QuizFragment extends Fragment {
     }
 
     private void quitPressed(){
-        MainActivity ma = (MainActivity) getActivity();
+        QuizActivity ma = (QuizActivity) getActivity();
         ma.startAugmentedImage();
     }
 
@@ -102,7 +100,7 @@ public class QuizFragment extends Fragment {
     }
 
     public void submitResult(Boolean correct){
-        MainActivity ma = (MainActivity) getActivity();
+        QuizActivity ma = (QuizActivity) getActivity();
         ma.startResult(correct, questionId);
     }
 

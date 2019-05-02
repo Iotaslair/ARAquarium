@@ -16,6 +16,7 @@
 
 package edu.ncf.ar.araquarium;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -30,6 +31,7 @@ import com.google.ar.core.TrackingState;
 import com.google.ar.sceneform.FrameTime;
 import edu.ncf.ar.araquarium.R;
 
+import edu.ncf.ar.araquarium.common.helpers.QuizActivity;
 import edu.ncf.ar.araquarium.common.helpers.SnackbarHelper;
 import com.google.ar.sceneform.ux.ArFragment;
 import java.util.Collection;
@@ -40,7 +42,7 @@ import java.util.Map;
  * This application demonstrates using augmented images to place anchor nodes. app to include image
  * tracking functionality.
  */
-public class MainActivity extends AppCompatActivity {
+public class AugmentedImageActivity extends AppCompatActivity {
 
   private FrameLayout frameLayout;
   private ArFragment arFragment;
@@ -54,11 +56,9 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.fragment_augmented_image);
     mRes = getResources();
     frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
-    startQuiz(R.array.dummy_quiz);
-    //startAugmentedImage();
   }
 
   @Override
@@ -69,30 +69,9 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void startQuiz(int questionId){
-    Log.d("activityMain", "Starting Quiz");
-    currentFragment = mRes.getString(R.string.QUIZ);
-    arFragment = null;
-    QuizFragment qf = new QuizFragment();
-    Bundle quizArgs = new Bundle();
-    quizArgs.putInt(mRes.getString(R.string.qid), questionId);
-    qf.setArguments(quizArgs);
-    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-    fragmentTransaction.replace(R.id.frameLayout, qf, mRes.getString(R.string.QUIZ));
-    fragmentTransaction.commit();
-  }
-
-  public void startResult(Boolean correct, int questionId){
-    Log.d("activityMain", "Starting Result");
-    currentFragment = mRes.getString(R.string.QUIZ);
-    arFragment = null;
-    ResultFragment rf = new ResultFragment();
-    Bundle resultArgs = new Bundle();
-    resultArgs.putInt(mRes.getString(R.string.qid), questionId);
-    resultArgs.putBoolean(mRes.getString(R.string.bid), correct);
-    rf.setArguments(resultArgs);
-    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-    fragmentTransaction.replace(R.id.frameLayout, rf, mRes.getString(R.string.QUIZ));
-    fragmentTransaction.commit();
+      Intent quiz = new Intent(this, QuizActivity.class);
+      quiz.putExtra(mRes.getString(R.string.qid), questionId);
+      startActivity(quiz);
   }
 
   public void startAugmentedAquarium(){}

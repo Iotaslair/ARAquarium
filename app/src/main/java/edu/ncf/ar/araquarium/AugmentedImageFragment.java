@@ -28,6 +28,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.google.ar.core.AugmentedImageDatabase;
 import com.google.ar.core.Config;
 import com.google.ar.core.Session;
@@ -84,12 +85,12 @@ public class AugmentedImageFragment extends ArFragment {
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = super.onCreateView(inflater, container, savedInstanceState);
-
+    //inflater.inflate(R.layout.fragment_augmented_image, container, false);
     // Turn off the plane discovery since we're only looking for images
     getPlaneDiscoveryController().hide();
     getPlaneDiscoveryController().setInstructionView(null);
     getArSceneView().getPlaneRenderer().setEnabled(false);
-    MainActivity ma = (MainActivity) getActivity();
+    AugmentedImageActivity ma = (AugmentedImageActivity) getActivity();
     getArSceneView().getScene().addOnUpdateListener(ma::onUpdateFrame);
     return view;
   }

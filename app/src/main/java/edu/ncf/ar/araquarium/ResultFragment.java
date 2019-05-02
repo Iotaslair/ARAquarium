@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import edu.ncf.ar.araquarium.common.helpers.QuizActivity;
+
 public class ResultFragment extends Fragment {
 
     private Resources mRes;
@@ -70,17 +72,17 @@ public class ResultFragment extends Fragment {
     }
 
     public void tryAgainPressed(){
-        MainActivity ma = (MainActivity) getActivity();
+        QuizActivity ma = (QuizActivity) getActivity();
         ma.startQuiz(questionId);
     }
 
     public void backpackPressed(){
-        MainActivity ma = (MainActivity) getActivity();
+        QuizActivity ma = (QuizActivity) getActivity();
         ma.startAugmentedAquarium();
     }
 
     public void cameraPressed(){
-        MainActivity ma = (MainActivity) getActivity();
+        QuizActivity ma = (QuizActivity) getActivity();
         ma.startAugmentedImage();
     }
 

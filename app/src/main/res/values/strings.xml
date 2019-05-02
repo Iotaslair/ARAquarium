@@ -20,6 +20,7 @@
   <string name="submit">Submit</string>
   <string name="QUIZ">quiz</string>
   <string name="AUGIMAGE">augmented image</string>
+  <string name="RESULT">result</string>
   <string name="qid">quiz id</string>
   <string name="bid">boolean id</string>
   <string name="correct">Correct!</string>
