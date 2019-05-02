@@ -29,7 +29,6 @@ public class StartQuizDialog extends DialogFragment {
             questionID = getArguments().getInt(getResources().getString(R.string.qid));
             questionName = getArguments().getString(getResources().getString(R.string.qname));
         }
-
         String message = getResources().getString(R.string.quizDialog)+" "+questionName+" ?";
         builder.setMessage(message)
                 .setPositiveButton(R.string.startQuiz, new DialogInterface.OnClickListener() {

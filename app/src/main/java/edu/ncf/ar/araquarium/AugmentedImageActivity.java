@@ -78,7 +78,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
         startAugmentedAquarium();
       }
     });
-    startQuizDialog(R.array.dummy_quiz, "Test");
+    //startQuizDialog(R.array.dummy_quiz, "Test");
   }
 
   @Override
@@ -104,6 +104,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
     Bundle dialogArgs = new Bundle();
     dialogArgs.putInt(mRes.getString(R.string.qid), quizId);
     dialogArgs.putString(mRes.getString(R.string.qname), quizName);
+    dialog.setArguments(dialogArgs);
     dialog.show(getSupportFragmentManager(), quizName);
   }
 
