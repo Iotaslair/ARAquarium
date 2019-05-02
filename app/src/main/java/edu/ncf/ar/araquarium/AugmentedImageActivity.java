@@ -16,15 +16,21 @@
 
 package edu.ncf.ar.araquarium;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.core.Frame;
 import com.google.ar.core.TrackingState;
@@ -59,6 +65,13 @@ public class AugmentedImageActivity extends AppCompatActivity {
     setContentView(R.layout.fragment_augmented_image);
     mRes = getResources();
     frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+    Button backpack = (Button) findViewById(R.id.btnBackPack);
+    backpack.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startAugmentedAquarium();
+      }
+    });
   }
 
   @Override
@@ -74,7 +87,10 @@ public class AugmentedImageActivity extends AppCompatActivity {
       startActivity(quiz);
   }
 
-  public void startAugmentedAquarium(){}
+  public void startAugmentedAquarium(){
+    Toast.makeText(this, "start augmented aquarium pressed", Toast.LENGTH_LONG).show();
+    Log.d("AugImg", "backpack pressed");
+  }
 
   public void startAugmentedImage(){
     Log.d("activityMain", "Starting Augmented Image");
@@ -135,4 +151,12 @@ public class AugmentedImageActivity extends AppCompatActivity {
       }
     }
   }
+
+  public class StartQuizDialog extends AlertDialog{
+    public StartQuizDialog(@NonNull Context context) {
+      super(context);
+
+    }
+  }
+
 }

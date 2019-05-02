@@ -19,7 +19,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/backpack"
-        android:layout_gravity="bottom"
+        android:layout_gravity="bottom|right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/image_view_fit_to_scan"
         app:layout_constraintHorizontal_bias="0.934"
