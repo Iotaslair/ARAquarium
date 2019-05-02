@@ -22,8 +22,12 @@
   <string name="AUGIMAGE">augmented image</string>
   <string name="RESULT">result</string>
   <string name="qid">quiz id</string>
+  <string name="qname">quiz name</string>
   <string name="bid">boolean id</string>
   <string name="correct">Correct!</string>
   <string name="incorrect">Incorrect!</string>
   <string name="tryAgain">Try Again?</string>
+  <string name="quizDialog">Would you like to start quiz </string>
+  <string name="startQuiz"> Start Quiz</string>
+  <string name="cancel">Cancel</string>
 </resources>

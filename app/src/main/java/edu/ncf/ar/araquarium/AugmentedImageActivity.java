@@ -16,11 +16,15 @@
 
 package edu.ncf.ar.araquarium;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +43,8 @@ import edu.ncf.ar.araquarium.R;
 
 import edu.ncf.ar.araquarium.common.helpers.QuizActivity;
 import edu.ncf.ar.araquarium.common.helpers.SnackbarHelper;
+import edu.ncf.ar.araquarium.common.helpers.StartQuizDialog;
+
 import com.google.ar.sceneform.ux.ArFragment;
 import java.util.Collection;
 import java.util.HashMap;
@@ -48,7 +54,7 @@ import java.util.Map;
  * This application demonstrates using augmented images to place anchor nodes. app to include image
  * tracking functionality.
  */
-public class AugmentedImageActivity extends AppCompatActivity {
+public class AugmentedImageActivity extends AppCompatActivity implements StartQuizDialog.StartQuizDialogListener {
 
   private FrameLayout frameLayout;
   private ArFragment arFragment;
@@ -72,6 +78,7 @@ public class AugmentedImageActivity extends AppCompatActivity {
         startAugmentedAquarium();
       }
     });
+    startQuizDialog(R.array.dummy_quiz, "Test");
   }
 
   @Override
@@ -81,10 +88,10 @@ public class AugmentedImageActivity extends AppCompatActivity {
     }
   }
 
-  public void startQuiz(int questionId){
-      Intent quiz = new Intent(this, QuizActivity.class);
-      quiz.putExtra(mRes.getString(R.string.qid), questionId);
-      startActivity(quiz);
+  public void startQuiz(int quizId){
+    Intent quiz = new Intent(this, QuizActivity.class);
+    quiz.putExtra(mRes.getString(R.string.qid), quizId);
+    startActivity(quiz);
   }
 
   public void startAugmentedAquarium(){
@@ -92,19 +99,12 @@ public class AugmentedImageActivity extends AppCompatActivity {
     Log.d("AugImg", "backpack pressed");
   }
 
-  public void startAugmentedImage(){
-    Log.d("activityMain", "Starting Augmented Image");
-    currentFragment = mRes.getString(R.string.AUGIMAGE);
-    AugmentedImageFragment aif = new AugmentedImageFragment();
-    //aif.getArSceneView().getScene().addOnUpdateListener(this::onUpdateFrame);
-    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-    fragmentTransaction.replace(R.id.frameLayout, aif, mRes.getString(R.string.AUGIMAGE));
-    fragmentTransaction.commit();
-    arFragment = aif;
-    Log.d("startAugmentedImage", " "+arFragment.toString());
-    assert(arFragment != null);
-    assert(arFragment.getArSceneView() != null);
-    assert(arFragment.getArSceneView().getScene() != null);
+  public void startQuizDialog(int quizId, String quizName){
+    StartQuizDialog dialog = new StartQuizDialog();
+    Bundle dialogArgs = new Bundle();
+    dialogArgs.putInt(mRes.getString(R.string.qid), quizId);
+    dialogArgs.putString(mRes.getString(R.string.qname), quizName);
+    dialog.show(getSupportFragmentManager(), quizName);
   }
 
   /**
@@ -152,11 +152,6 @@ public class AugmentedImageActivity extends AppCompatActivity {
     }
   }
 
-  public class StartQuizDialog extends AlertDialog{
-    public StartQuizDialog(@NonNull Context context) {
-      super(context);
 
-    }
-  }
 
 }
