@@ -88,8 +88,11 @@ public class AugmentedImageActivity extends AppCompatActivity {
   }
 
   public void startAugmentedAquarium(){
-    Toast.makeText(this, "start augmented aquarium pressed", Toast.LENGTH_LONG).show();
-    Log.d("AugImg", "backpack pressed");
+//    Toast.makeText(this, "start augmented aquarium pressed", Toast.LENGTH_LONG).show();
+//    Log.d("AugImg", "backpack pressed");
+
+    Intent intent = new Intent(AugmentedImageActivity.this, FurnitureActivity.class);
+    startActivity(intent);
   }
 
   public void startAugmentedImage(){
