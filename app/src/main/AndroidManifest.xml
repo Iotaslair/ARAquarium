@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FurnitureActivity"
+            android:name=".AquariumActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:screenOrientation="locked"

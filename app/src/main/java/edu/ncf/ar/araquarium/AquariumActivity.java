@@ -26,7 +26,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -41,8 +40,8 @@ import com.google.ar.sceneform.ux.TransformableNode;
 /**
  * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
  */
-public class FurnitureActivity extends AppCompatActivity {
-  private static final String TAG = FurnitureActivity.class.getSimpleName();
+public class AquariumActivity extends AppCompatActivity {
+  private static final String TAG = AquariumActivity.class.getSimpleName();
   private static final double MIN_OPENGL_VERSION = 3.0;
 
   private ArFragment arFragment;
@@ -59,7 +58,7 @@ public class FurnitureActivity extends AppCompatActivity {
       return;
     }
 
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_aquarium);
     arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.sceneform_fragment);
     initializeGallery();
     // When you build a Renderable, Sceneform loads its resources in the background while returning

@@ -16,30 +16,18 @@
 
 package edu.ncf.ar.araquarium;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.core.Frame;
 import com.google.ar.core.TrackingState;
 import com.google.ar.sceneform.FrameTime;
-import edu.ncf.ar.araquarium.R;
 
 import edu.ncf.ar.araquarium.common.helpers.QuizActivity;
 import edu.ncf.ar.araquarium.common.helpers.SnackbarHelper;
@@ -97,8 +85,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
   public void startAugmentedAquarium(){
 //    Toast.makeText(this, "start augmented aquarium pressed", Toast.LENGTH_LONG).show();
 //    Log.d("AugImg", "backpack pressed");
-
-    Intent intent = new Intent(AugmentedImageActivity.this, FurnitureActivity.class);
+    Intent intent = new Intent(AugmentedImageActivity.this, AquariumActivity.class);
     startActivity(intent);
   }
 
