@@ -14,6 +14,7 @@ import com.google.ar.sceneform.ux.ArFragment;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.ncf.ar.araquarium.AquariumActivity;
 import edu.ncf.ar.araquarium.AugmentedImageActivity;
 import edu.ncf.ar.araquarium.AugmentedImageNode;
 import edu.ncf.ar.araquarium.QuizFragment;
@@ -67,7 +68,10 @@ public class QuizActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void startAugmentedAquarium(){}
+    public void startAugmentedAquarium(){
+        Intent intent = new Intent(this, AquariumActivity.class);
+        startActivity(intent);
+    }
 
     public void startAugmentedImage(){
         Intent augImg = new Intent(this, AugmentedImageActivity.class);

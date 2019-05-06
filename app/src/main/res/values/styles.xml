@@ -32,4 +32,8 @@
     <!-- All customizations that are NOT specific to a particular API-level can go here. -->
   </style>
 
+  <style name="OceanTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="android:background">@color/questionBorder</item>
+  </style>
+
 </resources>

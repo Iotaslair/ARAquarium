@@ -24,7 +24,7 @@ public class StartQuizDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.OceanTheme);
         if (getArguments() != null) {
             questionID = getArguments().getInt(getResources().getString(R.string.qid));
             questionName = getArguments().getString(getResources().getString(R.string.qname));
