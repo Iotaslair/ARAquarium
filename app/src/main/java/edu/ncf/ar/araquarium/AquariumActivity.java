@@ -63,7 +63,7 @@ public class AquariumActivity extends AppCompatActivity {
   private static final String TAG = AquariumActivity.class.getSimpleName();
   private static final double MIN_OPENGL_VERSION = 3.0;
 
-  private ArFragment arFragment;
+  private ScreenShotArFragment arFragment;
   private ModelRenderable andyRenderable;
 
   @Override
@@ -78,7 +78,7 @@ public class AquariumActivity extends AppCompatActivity {
     }
 
     setContentView(R.layout.activity_aquarium);
-    arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.sceneform_fragment);
+    arFragment = (ScreenShotArFragment) getSupportFragmentManager().findFragmentById(R.id.sceneform_fragment);
     initializeGallery();
     // When you build a Renderable, Sceneform loads its resources in the background while returning
     // a CompletableFuture. Call thenAccept(), handle(), or check isDone() before calling get().
@@ -131,36 +131,8 @@ public class AquariumActivity extends AppCompatActivity {
   }
 
       public void takeScreenShot(){
-      //This doesn't work, no idea how to do this.
-//          if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-//                  PackageManager.PERMISSION_GRANTED){
-//              ActivityCompat.requestPermissions(this,
-//                      new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 69);
-//          }else {
-//              View view = findViewById(R.id.sceneform_fragment);
-//              Bitmap bm = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-//              Canvas canvas = new Canvas(bm);
-//              view.layout(0, 0, view.getLayoutParams().width, view.getLayoutParams().height);
-//              view.draw(canvas);
-//              try {
-//                  Log.d("ScreenShot", "Starting to take screen shot...");
-//                  Date date = new Date();
-//                  CharSequence currentDate = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);
-//                  String imagePath = Environment.getExternalStorageDirectory().toString() + "/Pictures/AR_Aquarium_ScreenShots_" + currentDate + ".jpg";
-//                  File imageFile = new File(imagePath);
-//                  FileOutputStream outputStream = new FileOutputStream(imageFile);
-//                  int quality = 100;
-//                  bm.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
-//                  outputStream.flush();
-//                  outputStream.close();
-//                  Log.d("ScreenShot", "Saved to " + imagePath);
-//                  Toast.makeText(this, "saved to " + imagePath, Toast.LENGTH_LONG).show();
-//              } catch (Throwable e) {
-//                  Log.d("ScreenShot", e.toString());
-//                  Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
-//              }
-//          }
-      }
+        arFragment.takePhoto();
+  }
 
     public void startAugmentedImage(){
         Intent augImg = new Intent(this, AugmentedImageActivity.class);

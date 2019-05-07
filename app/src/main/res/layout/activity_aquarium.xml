@@ -7,26 +7,29 @@
 
     <fragment
         android:id="@+id/sceneform_fragment"
-        android:name="com.google.ar.sceneform.ux.ArFragment"
-        android:layout_width="402dp"
-        android:layout_height="616dp"
+        android:name="edu.ncf.ar.araquarium.ScreenShotArFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/scroll_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="spread"
         app:layout_constraintVertical_weight="9" />
 
     <HorizontalScrollView
         android:id="@+id/scroll_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnScreenShot"
-        app:layout_constraintStart_toEndOf="@+id/btnBackToIR"
-        app:layout_constraintTop_toBottomOf="@+id/sceneform_fragment">
+        app:layout_constraintStart_toEndOf="@+id/btnBackToIR">
 
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -53,10 +56,10 @@
         android:id="@+id/btnScreenShot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sceneform_fragment"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/sceneform_fragment" />
 
 </android.support.constraint.ConstraintLayout>
