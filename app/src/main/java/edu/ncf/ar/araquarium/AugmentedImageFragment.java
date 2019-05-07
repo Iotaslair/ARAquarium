@@ -53,7 +53,7 @@ public class AugmentedImageFragment extends ArFragment {
 
   // Augmented image configuration and rendering.
   // Load a single image (true) or a pre-generated image database (false).
-  private static final boolean USE_SINGLE_IMAGE = false;
+  private static final boolean USE_CUSTOM_DATABASE = true;
 
   // Do a runtime check for the OpenGL level available at runtime to avoid Sceneform crashing the
   // application.
@@ -120,8 +120,8 @@ public class AugmentedImageFragment extends ArFragment {
     // Option 2) has
     // * shorter setup time
     // * doesn't require images to be packaged in apk.
-    if (USE_SINGLE_IMAGE) {
-      Bitmap augmentedImageBitmap = loadAugmentedImageBitmap(assetManager);
+    if (USE_CUSTOM_DATABASE) {
+      Bitmap augmentedImageBitmap = loadAugmentedImageBitmap(assetManager, DEFAULT_IMAGE_NAME);
       if (augmentedImageBitmap == null) {
         return false;
       }
@@ -147,8 +147,8 @@ public class AugmentedImageFragment extends ArFragment {
     return true;
   }
 
-  private Bitmap loadAugmentedImageBitmap(AssetManager assetManager) {
-    try (InputStream is = assetManager.open(DEFAULT_IMAGE_NAME)) {
+  private Bitmap loadAugmentedImageBitmap(AssetManager assetManager, String imagename) {
+    try (InputStream is = assetManager.open(imagename)) {
       return BitmapFactory.decodeStream(is);
     } catch (IOException e) {
       Log.e(TAG, "IO exception loading augmented image bitmap.", e);

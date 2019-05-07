@@ -45,9 +45,8 @@ import java.util.Map;
 public class AugmentedImageActivity extends AppCompatActivity implements StartQuizDialog.StartQuizDialogListener {
 
   private FrameLayout frameLayout;
-  private ArFragment arFragment;
+  private AugmentedImageFragment arFragment;
   private Resources mRes;
-  private String currentFragment;
 
   // Augmented image and its associated center pose anchor, keyed by the augmented image in
   // the database.
@@ -59,6 +58,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
     setContentView(R.layout.fragment_augmented_image);
     mRes = getResources();
     frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+    arFragment = (AugmentedImageFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
     Button backpack = (Button) findViewById(R.id.btnBackPack);
     backpack.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -66,14 +66,11 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
         startAugmentedAquarium();
       }
     });
-    //startQuizDialog(R.array.dummy_quiz, "Test");
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    if(currentFragment == mRes.getString(R.string.AUGIMAGE)) {
-    }
   }
 
   public void startQuiz(int quizId){
@@ -104,43 +101,43 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
    * @param frameTime - time since last frame.
    */
   public void onUpdateFrame(FrameTime frameTime) {
-    if (currentFragment == mRes.getString(R.string.AUGIMAGE)) {
-      Frame frame = arFragment.getArSceneView().getArFrame();
+      if(arFragment.getArSceneView().getArFrame() != null) {
+        Frame frame = arFragment.getArSceneView().getArFrame();
 
-      // If there is no frame or ARCore is not tracking yet, just return.
-      if (frame == null || frame.getCamera().getTrackingState() != TrackingState.TRACKING) {
-        return;
-      }
+        // If there is no frame or ARCore is not tracking yet, just return.
+        if (frame == null || frame.getCamera().getTrackingState() != TrackingState.TRACKING) {
+          return;
+        }
 
-      Collection<AugmentedImage> updatedAugmentedImages =
-              frame.getUpdatedTrackables(AugmentedImage.class);
-      for (AugmentedImage augmentedImage : updatedAugmentedImages) {
-        switch (augmentedImage.getTrackingState()) {
-          case PAUSED:
-            // When an image is in PAUSED state, but the camera is not PAUSED, it has been detected,
-            // but not yet tracked.
-            String text = "Detected Image " + augmentedImage.getIndex();
-            SnackbarHelper.getInstance().showMessage(this, text);
-            break;
+        Collection<AugmentedImage> updatedAugmentedImages =
+                frame.getUpdatedTrackables(AugmentedImage.class);
+        for (AugmentedImage augmentedImage : updatedAugmentedImages) {
+          switch (augmentedImage.getTrackingState()) {
+            case PAUSED:
+              // When an image is in PAUSED state, but the camera is not PAUSED, it has been detected,
+              // but not yet tracked.
+              String text = "Detected Image " + augmentedImage.getIndex();
+              SnackbarHelper.getInstance().showMessage(this, text);
+              break;
 
-          case TRACKING:
-            // Have to switch to UI Thread to update View.
+            case TRACKING:
+              // Have to switch to UI Thread to update View.
 
-            // Create a new anchor for newly found images.
-            if (!augmentedImageMap.containsKey(augmentedImage)) {
-              AugmentedImageNode node = new AugmentedImageNode(this);
-              node.setImage(augmentedImage);
-              augmentedImageMap.put(augmentedImage, node);
-              arFragment.getArSceneView().getScene().addChild(node);
-            }
-            break;
+              // Create a new anchor for newly found images.
+              if (!augmentedImageMap.containsKey(augmentedImage)) {
+                AugmentedImageNode node = new AugmentedImageNode(this);
+                node.setImage(augmentedImage);
+                augmentedImageMap.put(augmentedImage, node);
+                arFragment.getArSceneView().getScene().addChild(node);
+              }
+              break;
 
-          case STOPPED:
-            augmentedImageMap.remove(augmentedImage);
-            break;
+            case STOPPED:
+              augmentedImageMap.remove(augmentedImage);
+              break;
+          }
         }
       }
-    }
   }
 
 
