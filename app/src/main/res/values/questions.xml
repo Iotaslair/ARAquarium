@@ -75,5 +75,20 @@
         <item>nemo_image</item>
         <item>These fish are nocturnal, so they can be found in deep coral reefs at nighttime.</item>
     </string-array>
+    <string-array name="gramma_quiz">
+        <item name="question">What does the Royal Gramma\'s diet consist of?</item>
+        <item>Zooplankton and Crustaceans</item>
+        <item>Humans</item>
+        <item>Manatees</item>
+        <item>Krabby Patties</item>
+        <item name="correct_answ">0</item>
+        <item>zooplankton</item>
+        <item>coralhumans</item>
+        <item>barbara</item>
+        <item>krabby_patty</item>
+        <item>none</item>
+        <item>none</item>
+        <item>The Royal Gramma is a planktivore, eating mostly zooplankton and crustaceans.</item>
+    </string-array>
 
 </resources>

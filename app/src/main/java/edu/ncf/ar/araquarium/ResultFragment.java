@@ -46,19 +46,21 @@ public class ResultFragment extends Fragment {
             }
         });
 
-        if(getArguments()!=null) {
+        if (getArguments() != null) {
             questionId = getArguments().getInt(mRes.getString(R.string.qid));
             String[] question = mRes.getStringArray(questionId);
             modelURI = question[10];
             tvExplanation.setText(question[12]);
             Boolean isCorrect = getArguments().getBoolean(mRes.getString(R.string.bid));
-            if(isCorrect){
+            if (isCorrect) {
                 btnTryAgain.setVisibility(View.INVISIBLE);
                 tvCorrect.setText(mRes.getString(R.string.correct));
-                iv.setImageDrawable(getContext().getDrawable(mRes.getIdentifier(question[11],
-                        "drawable", getActivity().getPackageName())));
+                if (!question[11].equals("none")) {
+                    iv.setImageDrawable(getContext().getDrawable(mRes.getIdentifier(question[11],
+                            "drawable", getActivity().getPackageName())));
+                }
                 //Add code to unlock model
-            }else{
+            } else {
                 tvCorrect.setText(mRes.getString(R.string.incorrect));
                 btnTryAgain.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -71,17 +73,17 @@ public class ResultFragment extends Fragment {
         return rootView;
     }
 
-    public void tryAgainPressed(){
+    public void tryAgainPressed() {
         QuizActivity ma = (QuizActivity) getActivity();
         ma.startQuiz(questionId);
     }
 
-    public void backpackPressed(){
+    public void backpackPressed() {
         QuizActivity ma = (QuizActivity) getActivity();
         ma.startAugmentedAquarium();
     }
 
-    public void cameraPressed(){
+    public void cameraPressed() {
         QuizActivity ma = (QuizActivity) getActivity();
         ma.startAugmentedImage();
     }

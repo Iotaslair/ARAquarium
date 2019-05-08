@@ -62,6 +62,9 @@ public class AugmentedImageNode extends AnchorNode {
       case("soldierfish.jpg"):
         activity.startQuizDialog(R.array.soldier_quiz, "Soldierfish Quiz");
         break;
+      case("gramma.jpg"):
+        activity.startQuizDialog(R.array.gramma_quiz, "Royal Gramma Quiz");
+        break;
     }
 
   }
