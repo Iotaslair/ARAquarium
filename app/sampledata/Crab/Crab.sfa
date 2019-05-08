@@ -115,7 +115,7 @@
     file: 'sampledata/Crab/Crab.obj',
     name: 'Crab',
     recenter: 'root',
-    scale: 0.01,
+    scale: 0.1,
   },
   version: '0.54:2',
 }
