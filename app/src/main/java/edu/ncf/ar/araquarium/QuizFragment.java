@@ -91,10 +91,8 @@ public class QuizFragment extends Fragment {
         View radioButton = radioGroup.findViewById(radioButtonID);
         int idx = radioGroup.indexOfChild(radioButton);
         if(idx == correctAnswerId) {
-            Toast.makeText(getActivity(),"Got it right!", Toast.LENGTH_LONG).show();
             submitResult(true);
         }else{
-            Toast.makeText(getActivity(),"Got it wrong!", Toast.LENGTH_LONG).show();
             submitResult(false);
         }
     }

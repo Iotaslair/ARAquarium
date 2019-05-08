@@ -19,10 +19,13 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -31,6 +34,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
@@ -162,7 +166,11 @@ public class AquariumActivity extends AppCompatActivity {
     }
 
     private void initializeGallery() {
+        SharedPreferences prefs = getSharedPreferences("unlocked models", 0);
         LinearLayout gallery = findViewById(R.id.gallery_layout);
+        Boolean noImages=true;
+        if (prefs.getBoolean("crab", false) == true) {
+            noImages=false;
         ImageView crab = new ImageView(this);
         crab.setImageResource(R.drawable.crab_image);
         crab.setContentDescription("Crab");
@@ -175,20 +183,25 @@ public class AquariumActivity extends AppCompatActivity {
             crabModelNode.setLocalRotation(Quaternion.eulerAngles(new Vector3(0,0,0)));
             crabModelNode.setRenderable(crabModel.getNow(null));
             */
-            buildObject("Crab.sfb");
-            Toast.makeText(this, "Crab selected", Toast.LENGTH_LONG).show();
+                buildObject("Crab.sfb");
+                Toast.makeText(this, "Crab selected", Toast.LENGTH_LONG).show();
         });
-        gallery.addView(crab);
+            gallery.addView(crab);
+    }
 
-        ImageView dolphin = new ImageView(this);
-        dolphin.setImageResource(R.drawable.dolphin_image);
-        dolphin.setContentDescription("Dolphin");
-        dolphin.setOnClickListener(view -> {
-            buildObject("Dolphin.sfb");
-            Toast.makeText(this, "Dolphin selected", Toast.LENGTH_LONG).show();
-        });
-        gallery.addView(dolphin);
-
+        if (prefs.getBoolean("dolphin", false) == true) {
+            noImages=false;
+            ImageView dolphin = new ImageView(this);
+            dolphin.setImageResource(R.drawable.dolphin_image);
+            dolphin.setContentDescription("Dolphin");
+            dolphin.setOnClickListener(view -> {
+                buildObject("Dolphin.sfb");
+                Toast.makeText(this, "Dolphin selected", Toast.LENGTH_LONG).show();
+            });
+            gallery.addView(dolphin);
+        }
+        if (prefs.getBoolean("bluetang", false) == true) {
+            noImages=false;
         ImageView dory = new ImageView(this);
         dory.setImageResource(R.drawable.dory_image);
         dory.setContentDescription("Dory");
@@ -197,7 +210,9 @@ public class AquariumActivity extends AppCompatActivity {
             Toast.makeText(this, "Pacific Blue Tang selected", Toast.LENGTH_LONG).show();
         });
         gallery.addView(dory);
-
+    }
+        if (prefs.getBoolean("clownfish", false) == true) {
+            noImages=false;
         ImageView nemo = new ImageView(this);
         nemo.setImageResource(R.drawable.nemo_image);
         nemo.setContentDescription("Nemo");
@@ -206,5 +221,14 @@ public class AquariumActivity extends AppCompatActivity {
             Toast.makeText(this, "Clownfish selected", Toast.LENGTH_LONG).show();
         });
         gallery.addView(nemo);
+        }
+        if(noImages){
+            TextView noImageNotice = new TextView(this);
+            noImageNotice.setText("You haven't unlocked any stickers yet! \n Try taking a quiz to unlock some.");
+            noImageNotice.setTextColor(Color.WHITE);
+            noImageNotice.setBackground(getResources().getDrawable(R.color.questionBorder));
+            noImageNotice.setTextSize(20);
+            gallery.addView(noImageNotice);
+        }
     }
 }

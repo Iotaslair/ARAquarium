@@ -11,7 +11,7 @@
         <item>dory</item>
         <item>dory</item>
         <item>dory</item>
-        <item>Dory.sfb</item>
+        <item>bluetang</item>
         <item>dory</item>
         <item>As seen in the hit films "Finding Nemo" and "Finding Dory," Dory is a Blue Tang</item>
     </string-array>
@@ -26,7 +26,7 @@
         <item>flipper</item>
         <item>ilya</item>
         <item>barbara</item>
-        <item>Dolphin.sfb</item>
+        <item>dolphin</item>
         <item>dolphin_image</item>
         <item>Snooty lived in the South Florida Museum, and lived to be 69 years old.</item>
     </string-array>
@@ -41,7 +41,7 @@
         <item>atlanticbluetang</item>
         <item>sohalsurgeonfish</item>
         <item>dory</item>
-        <item>TropicalFish02.sfb</item>
+        <item>>bluetang</item>
         <item>dory_image</item>
         <item>While it may share most of its name with the Pacific Blue Tang, the Atlantic Blue Tang is actually a seperate species.</item>
     </string-array>
@@ -56,7 +56,7 @@
         <item>pbj</item>
         <item>coraljellyfish</item>
         <item>coralhumans</item>
-        <item>Crab.sfb</item>
+        <item>crab</item>
         <item>crab_image</item>
         <item>The Queen Angelfish\'s diet consists of coral, sponges, jellyfish, and plankton. They are known to be difficult to keep in tanks.</item>
     </string-array>
@@ -71,7 +71,7 @@
         <item>beach</item>
         <item>lake</item>
         <item>coralreef</item>
-        <item>TropicalFish12.sfb</item>
+        <item>clownfish</item>
         <item>nemo_image</item>
         <item>These fish are nocturnal, so they can be found in deep coral reefs at nighttime.</item>
     </string-array>

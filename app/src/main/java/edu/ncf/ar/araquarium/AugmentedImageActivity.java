@@ -18,11 +18,13 @@ package edu.ncf.ar.araquarium;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -60,7 +62,13 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
+    if(getSharedPreferences("unlocked models", 0).getAll().size() == 0){
+      SharedPreferences.Editor prefs = getSharedPreferences("unlocked models", 0).edit();
+      prefs.putBoolean("crab", false).apply();
+      prefs.putBoolean("dolphin", false).apply();
+      prefs.putBoolean("bluetang", false).apply();
+      prefs.putBoolean("clownfish", false).apply();
+    }
     setContentView(R.layout.fragment_augmented_image);
     mRes = getResources();
     frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
