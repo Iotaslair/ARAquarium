@@ -40,7 +40,7 @@ public class QuizActivity extends AppCompatActivity {
         if(intent != null){
             questionId = intent.getIntExtra(mRes.getString(R.string.qid), R.array.dummy_quiz);
         } else { questionId = R.array.dummy_quiz;}
-        startQuiz(R.array.dummy_quiz);
+        startQuiz(questionId);
     }
 
     public void startQuiz(int questionId){

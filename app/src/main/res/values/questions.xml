@@ -15,5 +15,65 @@
         <item>dory</item>
         <item>As seen in the hit films "Finding Nemo" and "Finding Dory," Dory is a Blue Tang</item>
     </string-array>
+    <string-array name="manatee_quiz">
+        <item name="question">What was the name of the world\'s oldest living Manatee?</item>
+        <item>Snooty</item>
+        <item>Flipper</item>
+        <item>Ilya</item>
+        <item>Barbara</item>
+        <item name="correct_answ">0</item>
+        <item>snooty</item>
+        <item>flipper</item>
+        <item>ilya</item>
+        <item>barbara</item>
+        <item>Dolphin.sfb</item>
+        <item>snooty</item>
+        <item>Snooty lived in the South Florida Museum, and lived to be 69 years old.</item>
+    </string-array>
+    <string-array name="blue_tang_quiz">
+        <item name="question">What species of blue surgeonfish lives within this tank?</item>
+        <item>Pacific Blue Tang</item>
+        <item>Atlantic Blue Tang</item>
+        <item>Sohal Surgeonfish</item>
+        <item>Dory</item>
+        <item name="correct_answ">1</item>
+        <item>bluetang</item>
+        <item>atlanticbluetang</item>
+        <item>sohalsurgeonfish</item>
+        <item>dory</item>
+        <item>TropicalFish02.sfb</item>
+        <item>bluetang</item>
+        <item>While it may share most of its name with the Pacific Blue Tang, the Atlantic Blue Tang is actually a seperate species.</item>
+    </string-array>
+    <string-array name="queen_quiz">
+        <item name="question">What do Queen Angelfish eat?</item>
+        <item>Jellyfish and Tuna</item>
+        <item>Peanut Butter and Jellyfish Sandwiches</item>
+        <item>Coral and Jellyfish</item>
+        <item>Coral and Humans</item>
+        <item name="correct_answ">2</item>
+        <item>tuna</item>
+        <item>pbj</item>
+        <item>coraljellyfish</item>
+        <item>coralhumans</item>
+        <item>Crab.sfb</item>
+        <item>coraljellyfish</item>
+        <item>The Queen Angelfish\'s diet consists of coral, sponges, jellyfish, and plankton. They are known to be difficult to keep in tanks.</item>
+    </string-array>
+    <string-array name="soldier_quiz">
+        <item name="question">Where can Black Bar Soldierfish be found?</item>
+        <item>Deep Trenches</item>
+        <item>Shallow Beaches</item>
+        <item>Lakes</item>
+        <item>Coral Reefs</item>
+        <item name="correct_answ">3</item>
+        <item>trench</item>
+        <item>beach</item>
+        <item>lake</item>
+        <item>coralreef</item>
+        <item>TropicalFish01.sfb</item>
+        <item>blackbarsoldier</item>
+        <item>These fish are nocturnal, so they can be found in deep coral reefs at nighttime.</item>
+    </string-array>
 
 </resources>
