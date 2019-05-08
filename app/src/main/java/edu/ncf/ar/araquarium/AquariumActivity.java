@@ -15,22 +15,14 @@
  */
 package edu.ncf.ar.araquarium;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -42,19 +34,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
-import com.google.ar.core.Frame;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.rendering.ModelRenderable;
-import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Date;
 
 /**
  * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
@@ -82,18 +66,6 @@ public class AquariumActivity extends AppCompatActivity {
     initializeGallery();
     // When you build a Renderable, Sceneform loads its resources in the background while returning
     // a CompletableFuture. Call thenAccept(), handle(), or check isDone() before calling get().
-//    ModelRenderable.builder()
-//        .setSource(this, Uri.parse("LampPost.sfb"))
-//        .build()
-//        .thenAccept(renderable -> andyRenderable = renderable)
-//        .exceptionally(
-//            throwable -> {
-//              Toast toast =
-//                  Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG);
-//              toast.setGravity(Gravity.CENTER, 0, 0);
-//              toast.show();
-//              return null;
-//            });
     arFragment.setOnTapArPlaneListener(
         (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
           if (andyRenderable == null) {
@@ -176,7 +148,7 @@ public class AquariumActivity extends AppCompatActivity {
               .exceptionally(
                       throwable -> {
                           Toast toast =
-                                  Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG);
+                                  Toast.makeText(this, "Unable to load renderable", Toast.LENGTH_LONG);
                           toast.setGravity(Gravity.CENTER, 0, 0);
                           toast.show();
                           return null;
@@ -186,34 +158,28 @@ public class AquariumActivity extends AppCompatActivity {
 
     private void initializeGallery() {
         LinearLayout gallery = findViewById(R.id.gallery_layout);
-        ImageView chair = new ImageView(this);
-        chair.setImageResource(R.drawable.dory);
-        chair.setContentDescription("chair");
-        //chair.setOnClickListener(view ->{buildObject("chair.sfb");});
-        gallery.addView(chair);
+        ImageView crab = new ImageView(this);
+        crab.setImageResource(R.drawable.crab_image);
+        crab.setContentDescription("Crab");
+        crab.setOnClickListener(view ->{buildObject("Crab.sfb");});
+        gallery.addView(crab);
 
-        ImageView lamp = new ImageView(this);
-        lamp.setImageResource(R.drawable.dory);
-        lamp.setContentDescription("lamp");
-        //lamp.setOnClickListener(view ->{buildObject("LampPost.sfb");});
-        gallery.addView(lamp);
+        ImageView dolphin = new ImageView(this);
+        dolphin.setImageResource(R.drawable.dolphin_image);
+        dolphin.setContentDescription("Dolphin");
+        dolphin.setOnClickListener(view ->{buildObject("Dolphin.sfb");});
+        gallery.addView(dolphin);
 
-        ImageView couch = new ImageView(this);
-        couch.setImageResource(R.drawable.dory);
-        couch.setContentDescription("couch");
-        //couch.setOnClickListener(view ->{buildObject("couch.sfb");});
-        gallery.addView(couch);
+        ImageView dory = new ImageView(this);
+        dory.setImageResource(R.drawable.dory_image);
+        dory.setContentDescription("Dory");
+        dory.setOnClickListener(view ->{buildObject("TropicalFish02.sfb");});
+        gallery.addView(dory);
 
-        ImageView bookshelf = new ImageView(this);
-        bookshelf.setImageResource(R.drawable.dory);
-        bookshelf.setContentDescription("bookshelf");
-        //bookshelf.setOnClickListener(view ->{buildObject("Corona Bookcase Set.sfb");});
-        gallery.addView(bookshelf);
-
-        ImageView stand = new ImageView(this);
-        stand.setImageResource(R.drawable.dory);
-        stand.setContentDescription("stand");
-        //stand.setOnClickListener(view ->{buildObject("Collier Webb Console.sfb");});
-        gallery.addView(stand);
+        ImageView nemo = new ImageView(this);
+        nemo.setImageResource(R.drawable.nemo_image);
+        nemo.setContentDescription("Nemo");
+        nemo.setOnClickListener(view ->{buildObject("TropicalFish12.sfb");});
+        gallery.addView(nemo);
     }
 }
