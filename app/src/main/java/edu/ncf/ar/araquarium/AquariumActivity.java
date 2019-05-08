@@ -37,8 +37,13 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.Node;
+import com.google.ar.sceneform.math.Quaternion;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.TransformableNode;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
@@ -140,8 +145,8 @@ public class AquariumActivity extends AppCompatActivity {
         return true;
     }
 
-    private void buildObject(String object) {
-        ModelRenderable.builder()
+    private CompletableFuture<Void> buildObject(String object) {
+        return ModelRenderable.builder()
                 .setSource(this, Uri.parse(object))
                 .build()
                 .thenAccept(renderable -> andyRenderable = renderable)
@@ -162,7 +167,12 @@ public class AquariumActivity extends AppCompatActivity {
         crab.setImageResource(R.drawable.crab_image);
         crab.setContentDescription("Crab");
         crab.setOnClickListener(view -> {
-            buildObject("Crab.sfb");
+            CompletableFuture<ModelRenderable> crabModel = ModelRenderable.builder()
+                    .setSource(this, Uri.parse("Crab.sfb"))
+                    .build();
+            Node crabModelNode = new Node();
+            crabModelNode.setLocalRotation(Quaternion.eulerAngles(new Vector3(0,0,0)));
+            crabModelNode.setRenderable(crabModel.getNow(null));
         });
         gallery.addView(crab);
 
