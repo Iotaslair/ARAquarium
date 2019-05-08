@@ -44,142 +44,150 @@ import com.google.ar.sceneform.ux.TransformableNode;
  * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
  */
 public class AquariumActivity extends AppCompatActivity {
-  private static final String TAG = AquariumActivity.class.getSimpleName();
-  private static final double MIN_OPENGL_VERSION = 3.0;
+    private static final String TAG = AquariumActivity.class.getSimpleName();
+    private static final double MIN_OPENGL_VERSION = 3.0;
 
-  private ScreenShotArFragment arFragment;
-  private ModelRenderable andyRenderable;
+    private ScreenShotArFragment arFragment;
+    private ModelRenderable andyRenderable;
 
-  @Override
-  @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
-  // CompletableFuture requires api level 24
-  // FutureReturnValueIgnored is not valid
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+    @Override
+    @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
+    // CompletableFuture requires api level 24
+    // FutureReturnValueIgnored is not valid
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    if (!checkIsSupportedDeviceOrFinish(this)) {
-      return;
-    }
-
-    setContentView(R.layout.activity_aquarium);
-    arFragment = (ScreenShotArFragment) getSupportFragmentManager().findFragmentById(R.id.sceneform_fragment);
-    initializeGallery();
-    // When you build a Renderable, Sceneform loads its resources in the background while returning
-    // a CompletableFuture. Call thenAccept(), handle(), or check isDone() before calling get().
-    arFragment.setOnTapArPlaneListener(
-        (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-          if (andyRenderable == null) {
+        if (!checkIsSupportedDeviceOrFinish(this)) {
             return;
-          }
+        }
 
-          // Create the Anchor.
-          Anchor anchor = hitResult.createAnchor();
-          AnchorNode anchorNode = new AnchorNode(anchor);
-          anchorNode.setParent(arFragment.getArSceneView().getScene());
+        setContentView(R.layout.activity_aquarium);
+        arFragment = (ScreenShotArFragment) getSupportFragmentManager().findFragmentById(R.id.sceneform_fragment);
+        initializeGallery();
+        // When you build a Renderable, Sceneform loads its resources in the background while returning
+        // a CompletableFuture. Call thenAccept(), handle(), or check isDone() before calling get().
+        arFragment.setOnTapArPlaneListener(
+                (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
+                    if (andyRenderable == null) {
+                        return;
+                    }
 
-          // Create the transformable andy and add it to the anchor.
-          TransformableNode andy = new TransformableNode(arFragment.getTransformationSystem());
-          andy.setParent(anchorNode);
-          andy.setRenderable(andyRenderable);
-          andy.select();
+                    // Create the Anchor.
+                    Anchor anchor = hitResult.createAnchor();
+                    AnchorNode anchorNode = new AnchorNode(anchor);
+                    anchorNode.setParent(arFragment.getArSceneView().getScene());
+
+                    // Create the transformable andy and add it to the anchor.
+                    TransformableNode andy = new TransformableNode(arFragment.getTransformationSystem());
+                    andy.setParent(anchorNode);
+                    andy.setRenderable(andyRenderable);
+                    andy.select();
+                });
+
+        Button backToIR = (Button) findViewById(R.id.btnBackToIR);
+        backToIR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAugmentedImage();
+            }
         });
 
-      Button backToIR = (Button) findViewById(R.id.btnBackToIR);
-      backToIR.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              startAugmentedImage();
-          }
-      });
+        Button screenShot = (Button) findViewById(R.id.btnScreenShot);
+        screenShot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takeScreenShot();
+            }
+        });
 
-      Button screenShot = (Button) findViewById(R.id.btnScreenShot);
-      screenShot.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              takeScreenShot();
-          }
-      });
+    }
 
-  }
-
-      public void takeScreenShot(){
+    public void takeScreenShot() {
         arFragment.takePhoto();
-  }
+    }
 
-    public void startAugmentedImage(){
+    public void startAugmentedImage() {
         Intent augImg = new Intent(this, AugmentedImageActivity.class);
         startActivity(augImg);
     }
 
-  /**
-   * Returns false and displays an error message if Sceneform can not run, true if Sceneform can run
-   * on this device.
-   *
-   * <p>Sceneform requires Android N on the device as well as OpenGL 3.0 capabilities.
-   *
-   * <p>Finishes the activity if Sceneform can not run
-   */
-  public static boolean checkIsSupportedDeviceOrFinish(final Activity activity) {
-    if (Build.VERSION.SDK_INT < VERSION_CODES.N) {
-      Log.e(TAG, "Sceneform requires Android N or later");
-      Toast.makeText(activity, "Sceneform requires Android N or later", Toast.LENGTH_LONG).show();
-      activity.finish();
-      return false;
+    /**
+     * Returns false and displays an error message if Sceneform can not run, true if Sceneform can run
+     * on this device.
+     *
+     * <p>Sceneform requires Android N on the device as well as OpenGL 3.0 capabilities.
+     *
+     * <p>Finishes the activity if Sceneform can not run
+     */
+    public static boolean checkIsSupportedDeviceOrFinish(final Activity activity) {
+        if (Build.VERSION.SDK_INT < VERSION_CODES.N) {
+            Log.e(TAG, "Sceneform requires Android N or later");
+            Toast.makeText(activity, "Sceneform requires Android N or later", Toast.LENGTH_LONG).show();
+            activity.finish();
+            return false;
+        }
+        String openGlVersionString =
+                ((ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE))
+                        .getDeviceConfigurationInfo()
+                        .getGlEsVersion();
+        if (Double.parseDouble(openGlVersionString) < MIN_OPENGL_VERSION) {
+            Log.e(TAG, "Sceneform requires OpenGL ES 3.0 later");
+            Toast.makeText(activity, "Sceneform requires OpenGL ES 3.0 or later", Toast.LENGTH_LONG)
+                    .show();
+            activity.finish();
+            return false;
+        }
+        return true;
     }
-    String openGlVersionString =
-        ((ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE))
-            .getDeviceConfigurationInfo()
-            .getGlEsVersion();
-    if (Double.parseDouble(openGlVersionString) < MIN_OPENGL_VERSION) {
-      Log.e(TAG, "Sceneform requires OpenGL ES 3.0 later");
-      Toast.makeText(activity, "Sceneform requires OpenGL ES 3.0 or later", Toast.LENGTH_LONG)
-          .show();
-      activity.finish();
-      return false;
+
+    private void buildObject(String object) {
+        ModelRenderable.builder()
+                .setSource(this, Uri.parse(object))
+                .build()
+                .thenAccept(renderable -> andyRenderable = renderable)
+                .exceptionally(
+                        throwable -> {
+                            Toast toast =
+                                    Toast.makeText(this, "Unable to load renderable", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                            return null;
+                        });
+
     }
-    return true;
-  }
-
-  private void buildObject(String object){
-      ModelRenderable.builder()
-              .setSource(this, Uri.parse(object))
-              .build()
-              .thenAccept(renderable -> andyRenderable = renderable)
-              .exceptionally(
-                      throwable -> {
-                          Toast toast =
-                                  Toast.makeText(this, "Unable to load renderable", Toast.LENGTH_LONG);
-                          toast.setGravity(Gravity.CENTER, 0, 0);
-                          toast.show();
-                          return null;
-                      });
-
-  }
 
     private void initializeGallery() {
         LinearLayout gallery = findViewById(R.id.gallery_layout);
         ImageView crab = new ImageView(this);
         crab.setImageResource(R.drawable.crab_image);
         crab.setContentDescription("Crab");
-        crab.setOnClickListener(view ->{buildObject("Crab.sfb");});
+        crab.setOnClickListener(view -> {
+            buildObject("Crab.sfb");
+        });
         gallery.addView(crab);
 
         ImageView dolphin = new ImageView(this);
         dolphin.setImageResource(R.drawable.dolphin_image);
         dolphin.setContentDescription("Dolphin");
-        dolphin.setOnClickListener(view ->{buildObject("Dolphin.sfb");});
+        dolphin.setOnClickListener(view -> {
+            buildObject("Dolphin.sfb");
+        });
         gallery.addView(dolphin);
 
         ImageView dory = new ImageView(this);
         dory.setImageResource(R.drawable.dory_image);
         dory.setContentDescription("Dory");
-        dory.setOnClickListener(view ->{buildObject("TropicalFish02.sfb");});
+        dory.setOnClickListener(view -> {
+            buildObject("TropicalFish02.sfb");
+        });
         gallery.addView(dory);
 
         ImageView nemo = new ImageView(this);
         nemo.setImageResource(R.drawable.nemo_image);
         nemo.setContentDescription("Nemo");
-        nemo.setOnClickListener(view ->{buildObject("TropicalFish12.sfb");});
+        nemo.setOnClickListener(view -> {
+            buildObject("TropicalFish12.sfb");
+        });
         gallery.addView(nemo);
     }
 }
