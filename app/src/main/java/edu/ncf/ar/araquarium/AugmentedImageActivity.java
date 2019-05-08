@@ -16,11 +16,16 @@
 
 package edu.ncf.ar.araquarium;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
@@ -55,6 +60,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     setContentView(R.layout.fragment_augmented_image);
     mRes = getResources();
     frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
@@ -94,6 +100,7 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
     dialog.setArguments(dialogArgs);
     dialog.show(getSupportFragmentManager(), quizName);
   }
+
 
   /**
    * Registered with the Sceneform Scene object, this method is called at the start of each frame.
