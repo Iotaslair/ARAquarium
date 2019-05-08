@@ -167,12 +167,15 @@ public class AquariumActivity extends AppCompatActivity {
         crab.setImageResource(R.drawable.crab_image);
         crab.setContentDescription("Crab");
         crab.setOnClickListener(view -> {
+            /*
             CompletableFuture<ModelRenderable> crabModel = ModelRenderable.builder()
                     .setSource(this, Uri.parse("Crab.sfb"))
                     .build();
             Node crabModelNode = new Node();
             crabModelNode.setLocalRotation(Quaternion.eulerAngles(new Vector3(0,0,0)));
             crabModelNode.setRenderable(crabModel.getNow(null));
+            */
+            buildObject("Crab.sfb");
             Toast.makeText(this, "Crab selected", Toast.LENGTH_LONG).show();
         });
         gallery.addView(crab);
