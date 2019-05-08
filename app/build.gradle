@@ -57,12 +57,6 @@ dependencies {
 
 apply plugin: 'com.google.ar.sceneform.plugin'
 
-
-sceneform.asset('sampledata/Crab/Crab.obj',
-        'default',
-        'sampledata/Crab/Crab.sfa',
-        'src/main/assets/Crab')
-
 sceneform.asset('sampledata/Dolphin/Dolphin.obj',
         'default',
         'sampledata/Dolphin/Dolphin.sfa',
@@ -77,3 +71,8 @@ sceneform.asset('sampledata/Nemo/TropicalFish12.obj',
         'default',
         'sampledata/Nemo/TropicalFish12.sfa',
         'src/main/assets/TropicalFish12')
+
+sceneform.asset('sampledata/Crab/Crab.obj',
+        'default',
+        'sampledata/Crab/Crab.sfa',
+        'src/main/assets/Crab')
