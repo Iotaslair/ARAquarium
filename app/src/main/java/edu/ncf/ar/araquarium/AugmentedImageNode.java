@@ -47,8 +47,21 @@ public class AugmentedImageNode extends AnchorNode {
     this.image = image;
     Log.d("AugmentedImageNode", "detected "+image.getName());
     switch(image.getName()){
-      case("images/default.jpg"):
+      case("default.jpg"):
         activity.startQuizDialog(R.array.dummy_quiz, "Test");
+        break;
+      case("bluetang.jpg"):
+        activity.startQuizDialog(R.array.blue_tang_quiz, "Blue Tang Quiz");
+        break;
+      case("manatee.jpg"):
+        activity.startQuizDialog(R.array.manatee_quiz, "Manatee Quiz");
+        break;
+      case("queen.jpg"):
+        activity.startQuizDialog(R.array.queen_quiz, "Queen Angelfish Quiz");
+        break;
+      case("soldierfish.jpg"):
+        activity.startQuizDialog(R.array.soldier_quiz, "Soldierfish Quiz");
+        break;
     }
 
   }
