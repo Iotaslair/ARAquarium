@@ -16,16 +16,9 @@
 
 package edu.ncf.ar.araquarium;
 
-import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.sceneform.AnchorNode;
-import com.google.ar.sceneform.Node;
-import com.google.ar.sceneform.math.Quaternion;
-import com.google.ar.sceneform.math.Vector3;
-import com.google.ar.sceneform.rendering.ModelRenderable;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * Node for rendering an augmented image. The image is framed by placing the virtual picture frame
@@ -54,7 +47,7 @@ public class AugmentedImageNode extends AnchorNode {
     this.image = image;
     Log.d("AugmentedImageNode", "detected "+image.getName());
     switch(image.getName()){
-      case("default.jpg"):
+      case("images/default.jpg"):
         activity.startQuizDialog(R.array.dummy_quiz, "Test");
     }
 

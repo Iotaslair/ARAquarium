@@ -173,6 +173,7 @@ public class AquariumActivity extends AppCompatActivity {
             Node crabModelNode = new Node();
             crabModelNode.setLocalRotation(Quaternion.eulerAngles(new Vector3(0,0,0)));
             crabModelNode.setRenderable(crabModel.getNow(null));
+            Toast.makeText(this, "Crab selected", Toast.LENGTH_LONG).show();
         });
         gallery.addView(crab);
 
@@ -181,6 +182,7 @@ public class AquariumActivity extends AppCompatActivity {
         dolphin.setContentDescription("Dolphin");
         dolphin.setOnClickListener(view -> {
             buildObject("Dolphin.sfb");
+            Toast.makeText(this, "Dolphin selected", Toast.LENGTH_LONG).show();
         });
         gallery.addView(dolphin);
 
@@ -189,6 +191,7 @@ public class AquariumActivity extends AppCompatActivity {
         dory.setContentDescription("Dory");
         dory.setOnClickListener(view -> {
             buildObject("TropicalFish02.sfb");
+            Toast.makeText(this, "Pacific Blue Tang selected", Toast.LENGTH_LONG).show();
         });
         gallery.addView(dory);
 
@@ -197,6 +200,7 @@ public class AquariumActivity extends AppCompatActivity {
         nemo.setContentDescription("Nemo");
         nemo.setOnClickListener(view -> {
             buildObject("TropicalFish12.sfb");
+            Toast.makeText(this, "Clownfish selected", Toast.LENGTH_LONG).show();
         });
         gallery.addView(nemo);
     }

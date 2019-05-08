@@ -27,7 +27,7 @@
         <item>ilya</item>
         <item>barbara</item>
         <item>Dolphin.sfb</item>
-        <item>snooty</item>
+        <item>dolphin_image</item>
         <item>Snooty lived in the South Florida Museum, and lived to be 69 years old.</item>
     </string-array>
     <string-array name="blue_tang_quiz">
@@ -42,7 +42,7 @@
         <item>sohalsurgeonfish</item>
         <item>dory</item>
         <item>TropicalFish02.sfb</item>
-        <item>bluetang</item>
+        <item>dory_image</item>
         <item>While it may share most of its name with the Pacific Blue Tang, the Atlantic Blue Tang is actually a seperate species.</item>
     </string-array>
     <string-array name="queen_quiz">
@@ -57,7 +57,7 @@
         <item>coraljellyfish</item>
         <item>coralhumans</item>
         <item>Crab.sfb</item>
-        <item>coraljellyfish</item>
+        <item>crab_image</item>
         <item>The Queen Angelfish\'s diet consists of coral, sponges, jellyfish, and plankton. They are known to be difficult to keep in tanks.</item>
     </string-array>
     <string-array name="soldier_quiz">
@@ -71,8 +71,8 @@
         <item>beach</item>
         <item>lake</item>
         <item>coralreef</item>
-        <item>TropicalFish01.sfb</item>
-        <item>blackbarsoldier</item>
+        <item>TropicalFish12.sfb</item>
+        <item>nemo_image</item>
         <item>These fish are nocturnal, so they can be found in deep coral reefs at nighttime.</item>
     </string-array>
 
