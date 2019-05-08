@@ -116,8 +116,14 @@ public class AugmentedImageActivity extends AppCompatActivity implements StartQu
             case PAUSED:
               // When an image is in PAUSED state, but the camera is not PAUSED, it has been detected,
               // but not yet tracked.
-              String text = "Detected Image " + augmentedImage.getIndex();
-              SnackbarHelper.getInstance().showMessage(this, text);
+              String text = "Detected Image " + augmentedImage.getName();
+              //SnackbarHelper.getInstance().showMessage(this, text);
+              if (!augmentedImageMap.containsKey(augmentedImage)) {
+                AugmentedImageNode node = new AugmentedImageNode(this);
+                node.setImage(augmentedImage);
+                augmentedImageMap.put(augmentedImage, node);
+                arFragment.getArSceneView().getScene().addChild(node);
+              }
               break;
 
             case TRACKING:
