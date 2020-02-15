@@ -1,6 +1,5 @@
 # ARAquarium
 
-## Demo Video
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/3PR-oGrSB6s/0.jpg)](http://www.youtube.com/watch?v=3PR-oGrSB6s "Augmented Reality Nerd Board")
 
 This is a project I worked on with [Iotaslair](https://github.com/Iotaslair) for our Augmented Reality class. This app is an Android Application built with Sceneform.
